@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" fill="none">
+  <rect width="1200" height="750" rx="24" fill="#244339"/>
+  <rect x="40" y="40" width="1120" height="80" rx="16" fill="#2F554B"/>
+  <rect x="72" y="68" width="260" height="24" rx="12" fill="#E8F2EF"/>
+  <rect x="40" y="148" width="360" height="520" rx="18" fill="#2F554B"/>
+  <rect x="72" y="188" width="200" height="14" rx="7" fill="#D1E5DF"/>
+  <rect x="72" y="230" width="296" height="90" rx="14" fill="#3D6B5F"/>
+  <rect x="72" y="340" width="296" height="90" rx="14" fill="#3D6B5F"/>
+  <rect x="72" y="450" width="296" height="90" rx="14" fill="#3D6B5F"/>
+  <rect x="424" y="148" width="736" height="520" rx="18" fill="#2F554B"/>
+  <rect x="464" y="196" width="320" height="20" rx="10" fill="#E8F2EF"/>
+  <rect x="464" y="244" width="640" height="12" rx="6" fill="#3D6B5F"/>
+  <rect x="464" y="280" width="560" height="12" rx="6" fill="#3D6B5F"/>
+  <rect x="464" y="340" width="656" height="260" rx="16" fill="#244339"/>
+  <text x="72" y="700" fill="#D1E5DF" font-family="Segoe UI, sans-serif" font-size="18">Learning preview  replace with real screenshots later</text>
+</svg>

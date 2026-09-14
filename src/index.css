@@ -43,6 +43,7 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Syne', 'Outfit', ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
@@ -112,4 +113,12 @@ body {
 
 .animate-fade-up {
   animation: fade-up 0.45s ease-out both;
+}
+
+.animate-fade-up-delay {
+  animation: fade-up 0.7s ease-out 0.12s both;
+}
+
+.font-display {
+  font-family: var(--font-display);
 }

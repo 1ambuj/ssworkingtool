@@ -3,9 +3,9 @@ import { buildTimesheetOpenUrl } from '@/lib/timesheet-handoff'
 import { useAuth } from '@/features/auth/AuthContext'
 import type { CatalogApp } from '@/features/apps/catalog'
 
-export function AppCard({ id, name, description, url }: CatalogApp) {
+export function AppCard({ id, name, tagline, description, url, status }: CatalogApp) {
   const { token } = useAuth()
-  const isReady = url !== '#'
+  const isReady = status === 'live' && url !== '#'
 
   const openUrl =
     id === 'psm' && token ? buildTimesheetOpenUrl(token) : url
@@ -17,7 +17,7 @@ export function AppCard({ id, name, description, url }: CatalogApp) {
           {name.charAt(0)}
         </div>
         {!isReady ? (
-          <span className="rounded-full bg-surface px-2.5 py-1 text-[11px] font-medium text-muted">
+          <span className="text-[11px] font-medium tracking-wide text-muted uppercase">
             Soon
           </span>
         ) : (
@@ -26,12 +26,13 @@ export function AppCard({ id, name, description, url }: CatalogApp) {
       </div>
 
       <h3 className="mt-4 text-base font-semibold text-ink">{name}</h3>
+      <p className="mt-1 text-sm font-medium text-brand-700">{tagline}</p>
       <p className="mt-1.5 line-clamp-2 flex-1 text-sm leading-relaxed text-muted">
         {description}
       </p>
 
       <p className="mt-5 text-sm font-medium text-brand-600">
-        {isReady ? 'Open app' : 'Coming soon'}
+        {isReady ? 'Open tool' : 'Coming soon'}
       </p>
     </>
   )

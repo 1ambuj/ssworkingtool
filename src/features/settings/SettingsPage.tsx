@@ -13,7 +13,7 @@ export function SettingsPage() {
   ]
 
   return (
-    <div className="mx-auto max-w-2xl space-y-8">
+    <div className="mx-auto max-w-2xl space-y-8 px-6 py-10 md:px-8">
       <header>
         <h1 className="text-3xl font-semibold tracking-tight text-ink">
           Settings
