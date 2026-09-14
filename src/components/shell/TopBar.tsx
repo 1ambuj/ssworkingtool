@@ -19,19 +19,22 @@ export function TopBar() {
   }
 
   return (
-    <header className="sticky top-0 z-30 border-b border-border bg-panel">
-      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-4 px-5 md:px-6">
-        <div className="flex min-w-0 items-center gap-8">
+    <header className="sticky top-0 z-30 border-b border-border/70 bg-panel/90 backdrop-blur-md">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-3.5 md:px-8">
+        <div className="flex min-w-0 items-center gap-6">
           <NavLink to="/" className="flex shrink-0 items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-brand-600 text-[11px] font-bold tracking-wide text-white">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-xs font-bold text-white shadow-sm">
               CW
             </div>
-            <span className="hidden text-sm font-semibold tracking-tight text-ink sm:inline">
-              CoreWorkspace
-            </span>
+            <div className="hidden sm:block">
+              <p className="font-display text-sm font-semibold tracking-tight text-ink">
+                CoreWorkspace
+              </p>
+              <p className="text-[11px] text-muted">Firm portal</p>
+            </div>
           </NavLink>
 
-          <nav className="flex items-center gap-0.5">
+          <nav className="flex items-center gap-1">
             {links.map((link) => (
               <NavLink
                 key={link.to}
@@ -39,10 +42,10 @@ export function TopBar() {
                 end={'end' in link ? link.end : false}
                 className={({ isActive }) =>
                   [
-                    'rounded-md px-3 py-1.5 text-sm transition',
+                    'rounded-xl px-3 py-2 text-sm font-medium transition',
                     isActive
-                      ? 'bg-surface font-medium text-ink'
-                      : 'text-muted hover:bg-surface/70 hover:text-ink',
+                      ? 'bg-brand-600 text-white shadow-sm'
+                      : 'text-muted hover:bg-surface hover:text-ink',
                   ].join(' ')
                 }
               >
@@ -53,17 +56,19 @@ export function TopBar() {
         </div>
 
         <div className="flex min-w-0 items-center gap-3">
-          <div className="hidden text-right sm:block">
-            <p className="truncate text-sm font-medium text-ink">{firstName}</p>
+          <div className="hidden text-right md:block">
+            <p className="truncate text-sm font-medium text-ink">
+              Welcome, {firstName}
+            </p>
             <p className="truncate text-xs text-muted">{user?.email}</p>
           </div>
           <button
             type="button"
             onClick={handleLogout}
-            className="inline-flex items-center gap-1.5 rounded-md border border-border px-2.5 py-1.5 text-sm text-muted transition hover:border-brand-500/40 hover:text-ink"
+            className="inline-flex items-center gap-2 rounded-xl border border-border/80 px-3 py-2 text-sm text-muted transition hover:border-brand-200 hover:text-ink"
           >
-            <LogOut className="h-3.5 w-3.5" />
-            <span className="hidden md:inline">Sign out</span>
+            <LogOut className="h-4 w-4" />
+            <span className="hidden sm:inline">Sign out</span>
           </button>
         </div>
       </div>

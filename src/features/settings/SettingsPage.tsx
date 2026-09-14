@@ -13,17 +13,17 @@ export function SettingsPage() {
   ]
 
   return (
-    <div className="mx-auto max-w-5xl px-5 py-8 md:px-6 md:py-10">
-      <header className="border-b border-border pb-6">
-        <h1 className="font-display text-2xl font-semibold tracking-tight text-ink">
+    <div className="mx-auto max-w-3xl px-6 py-10 md:px-8">
+      <header>
+        <h1 className="font-display text-3xl font-semibold tracking-tight text-ink">
           Settings
         </h1>
-        <p className="mt-1.5 text-sm text-muted">
-          Profile from your SSA Intersoft session. Not edited here.
+        <p className="mt-2 text-sm text-muted md:text-base">
+          Profile details from your SSA Intersoft session.
         </p>
       </header>
 
-      <section className="mt-7 overflow-hidden rounded-lg border border-border bg-panel">
+      <section className="mt-8 overflow-hidden rounded-2xl border border-border/80 bg-panel shadow-sm">
         {rows.map((row, index) => (
           <div
             key={row.label}

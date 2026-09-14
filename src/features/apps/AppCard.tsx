@@ -13,30 +13,35 @@ export function AppCard({ id, name, tagline, description, url, status }: Catalog
   const content = (
     <>
       <div className="flex items-start justify-between gap-3">
-        <h3 className="text-base font-semibold text-ink">{name}</h3>
+        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-50 text-sm font-semibold text-brand-700 ring-1 ring-brand-100">
+          {name.charAt(0)}
+        </div>
         {!isReady ? (
-          <span className="text-[11px] font-medium text-muted uppercase">
+          <span className="text-[11px] font-medium tracking-wide text-muted uppercase">
             Soon
           </span>
         ) : (
           <ArrowUpRight className="h-4 w-4 text-muted opacity-0 transition group-hover:opacity-100" />
         )}
       </div>
+
+      <h3 className="mt-4 text-base font-semibold text-ink">{name}</h3>
       <p className="mt-1 text-sm font-medium text-brand-700">{tagline}</p>
-      <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted">
+      <p className="mt-1.5 line-clamp-2 flex-1 text-sm leading-relaxed text-muted">
         {description}
       </p>
-      <p className="mt-4 text-sm font-semibold text-brand-700">
-        {isReady ? 'Open' : 'Not available yet'}
+
+      <p className="mt-5 text-sm font-medium text-brand-600">
+        {isReady ? 'Open tool' : 'Coming soon'}
       </p>
     </>
   )
 
   const className =
-    'group flex h-full flex-col rounded-lg border border-border bg-panel p-5 transition hover:border-brand-500/50'
+    'group flex h-full flex-col rounded-2xl border border-border/80 bg-panel p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-brand-100 hover:shadow-md'
 
   if (!isReady) {
-    return <article className={`${className} opacity-75`}>{content}</article>
+    return <article className={`${className} opacity-80`}>{content}</article>
   }
 
   return (

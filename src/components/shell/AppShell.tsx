@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom'
+import { Footer } from '@/components/shell/Footer'
 import { TopBar } from '@/components/shell/TopBar'
 
 export function AppShell() {
@@ -10,6 +11,7 @@ export function AppShell() {
           <Outlet />
         </div>
       </main>
+      <Footer />
     </div>
   )
 }
