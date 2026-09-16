@@ -1,4 +1,5 @@
-import type { AuthSession } from '@/types/auth'
+import type { AuthSession, AppId } from '@/types/auth'
+import { DEFAULT_ALLOWED_APPS } from '@/features/apps/catalog'
 import { SESSION_KEY } from '@/lib/psm-config'
 
 function isValidSession(value: unknown): value is AuthSession {
@@ -12,6 +13,14 @@ function isValidSession(value: unknown): value is AuthSession {
   )
 }
 
+/** Keep live tools in session even if an older login missed pdf-studio */
+function normalizeAllowedApps(apps: AppId[] | undefined): AppId[] {
+  const liveIds = new Set(DEFAULT_ALLOWED_APPS)
+  const fromSession = (apps ?? []).filter((id) => liveIds.has(id))
+  const merged = new Set<AppId>([...DEFAULT_ALLOWED_APPS, ...fromSession])
+  return DEFAULT_ALLOWED_APPS.filter((id) => merged.has(id))
+}
+
 export function loadSession(): AuthSession | null {
   try {
     const raw = localStorage.getItem(SESSION_KEY)
@@ -21,7 +30,16 @@ export function loadSession(): AuthSession | null {
       localStorage.removeItem(SESSION_KEY)
       return null
     }
-    return parsed
+
+    const normalized: AuthSession = {
+      ...parsed,
+      user: {
+        ...parsed.user,
+        allowedApps: normalizeAllowedApps(parsed.user.allowedApps),
+      },
+    }
+    saveSession(normalized)
+    return normalized
   } catch {
     localStorage.removeItem(SESSION_KEY)
     return null

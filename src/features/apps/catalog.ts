@@ -16,6 +16,7 @@ export interface CatalogApp {
   accessNote?: string
 }
 
+/** Live firm tools only — placeholders removed to avoid duplicate PDF messaging */
 export const catalog: CatalogApp[] = [
   {
     id: 'psm',
@@ -77,40 +78,9 @@ export const catalog: CatalogApp[] = [
     kind: 'web',
     accessNote: 'LAN access',
   },
-  {
-    id: 'task-tracker',
-    name: 'Task Tracker',
-    tagline: 'Work status across teams',
-    description: 'Track assigned delivery work in one place.',
-    actions: [],
-    details: [],
-    url: '#',
-    status: 'soon',
-    kind: 'web',
-  },
-  {
-    id: 'documents',
-    name: 'Documents',
-    tagline: 'Files & PDF tools',
-    description: 'Shared firm documents, PDF merge, and file helpers.',
-    actions: [],
-    details: [],
-    url: '#',
-    status: 'soon',
-    kind: 'web',
-  },
-  {
-    id: 'ai-assistant',
-    name: 'AI Assistant',
-    tagline: 'Drafting help',
-    description: 'Drafting and research support for everyday firm writing.',
-    actions: [],
-    details: [],
-    url: '#',
-    status: 'soon',
-    kind: 'web',
-  },
 ]
+
+export const DEFAULT_ALLOWED_APPS: AppId[] = ['psm', 'pdf-studio', 'learning']
 
 export function getAllowedApps(allowedApps: AppId[] | undefined): CatalogApp[] {
   if (!allowedApps?.length) return []

@@ -19,7 +19,6 @@ export function HomePage() {
   const timesheet = getCatalogApp('psm')
   const learning = getCatalogApp('learning')
   const live = apps.filter((app) => app.status === 'live')
-  const soon = apps.filter((app) => app.status === 'soon')
   const timesheetUrl = timesheet ? openUrlFor(timesheet, token) : null
   const hasLearning = apps.some((a) => a.id === 'learning')
 
@@ -174,7 +173,7 @@ export function HomePage() {
             </Link>
           </div>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {live.map((app) => {
               const href = openUrlFor(app, token)
               const isInternal = app.kind === 'desktop' || href.startsWith('/')
@@ -211,30 +210,6 @@ export function HomePage() {
               )
             })}
           </div>
-
-          {soon.length > 0 ? (
-            <div className="mt-14">
-              <h3 className="text-sm font-medium tracking-[0.16em] text-muted uppercase">
-                Coming later
-              </h3>
-              <ul className="mt-5 divide-y divide-border/70 border-y border-border/70">
-                {soon.map((app) => (
-                  <li
-                    key={app.id}
-                    className="flex flex-wrap items-baseline justify-between gap-2 py-4"
-                  >
-                    <div>
-                      <p className="font-medium text-ink">{app.name}</p>
-                      <p className="mt-1 text-sm text-muted">{app.tagline}</p>
-                    </div>
-                    <span className="text-xs tracking-wide text-muted uppercase">
-                      Soon
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
         </div>
       </section>
     </div>

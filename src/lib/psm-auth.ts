@@ -1,4 +1,5 @@
 import type { AuthSession, AuthUser, LoginCredentials, UserRole } from '@/types/auth'
+import { DEFAULT_ALLOWED_APPS } from '@/features/apps/catalog'
 import { PSM_API_URL } from '@/lib/psm-config'
 
 interface PsmLoginUser {
@@ -73,10 +74,7 @@ function mapPsmUser(user: PsmLoginUser): AuthUser {
     role,
     department: '—',
     manager: null,
-    allowedApps:
-      role === 'admin'
-        ? ['psm', 'pdf-studio', 'learning', 'task-tracker', 'documents', 'ai-assistant']
-        : ['psm', 'pdf-studio', 'learning', 'documents'],
+    allowedApps: [...DEFAULT_ALLOWED_APPS],
   }
 }
 

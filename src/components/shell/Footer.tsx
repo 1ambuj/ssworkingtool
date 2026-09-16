@@ -1,10 +1,6 @@
 import { Link } from 'react-router-dom'
 
-const upcoming = [
-  'Task Tracker',
-  'Documents & PDF merge',
-  'AI Assistant',
-]
+const upcoming = ['Task Tracker', 'AI Assistant']
 
 export function Footer() {
   const year = new Date().getFullYear()
