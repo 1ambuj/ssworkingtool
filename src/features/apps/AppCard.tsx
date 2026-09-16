@@ -1,14 +1,21 @@
 import { ArrowUpRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { buildTimesheetOpenUrl } from '@/lib/timesheet-handoff'
 import { useAuth } from '@/features/auth/AuthContext'
 import type { CatalogApp } from '@/features/apps/catalog'
 
-export function AppCard({ id, name, tagline, description, url, status }: CatalogApp) {
-  const { token } = useAuth()
-  const isReady = status === 'live' && url !== '#'
+function hrefFor(app: CatalogApp, token: string | null) {
+  if (app.kind === 'desktop') return app.url
+  if (app.id === 'psm' && token) return buildTimesheetOpenUrl(token)
+  return app.url
+}
 
-  const openUrl =
-    id === 'psm' && token ? buildTimesheetOpenUrl(token) : url
+export function AppCard(props: CatalogApp) {
+  const { name, tagline, description, status, kind } = props
+  const { token } = useAuth()
+  const isReady = status === 'live' && props.url !== '#'
+  const target = hrefFor(props, token)
+  const isInternal = kind === 'desktop' || target.startsWith('/')
 
   const content = (
     <>
@@ -32,7 +39,11 @@ export function AppCard({ id, name, tagline, description, url, status }: Catalog
       </p>
 
       <p className="mt-5 text-sm font-medium text-brand-600">
-        {isReady ? 'Open tool' : 'Coming soon'}
+        {isReady
+          ? kind === 'desktop'
+            ? 'Download & install'
+            : 'Open tool'
+          : 'Coming soon'}
       </p>
     </>
   )
@@ -44,9 +55,17 @@ export function AppCard({ id, name, tagline, description, url, status }: Catalog
     return <article className={`${className} opacity-80`}>{content}</article>
   }
 
+  if (isInternal) {
+    return (
+      <Link to={target} className={className}>
+        {content}
+      </Link>
+    )
+  }
+
   return (
     <a
-      href={openUrl}
+      href={target}
       target="_blank"
       rel="noopener noreferrer"
       className={className}

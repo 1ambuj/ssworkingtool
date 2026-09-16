@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { AppShell } from '@/components/shell/AppShell'
 import { PlaceholderPage } from '@/components/PlaceholderPage'
 import { AppsPage } from '@/features/apps/AppsPage'
+import { PdfStudioPage } from '@/features/apps/PdfStudioPage'
 import { AuthProvider } from '@/features/auth/AuthContext'
 import { LoginPage } from '@/features/auth/LoginPage'
 import { ProtectedRoute } from '@/features/auth/ProtectedRoute'
@@ -19,6 +20,7 @@ export default function App() {
             <Route element={<AppShell />}>
               <Route index element={<HomePage />} />
               <Route path="apps" element={<AppsPage />} />
+              <Route path="apps/pdf-studio" element={<PdfStudioPage />} />
               <Route path="settings" element={<SettingsPage />} />
               <Route
                 path="admin/registry"

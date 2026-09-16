@@ -75,8 +75,8 @@ function mapPsmUser(user: PsmLoginUser): AuthUser {
     manager: null,
     allowedApps:
       role === 'admin'
-        ? ['psm', 'learning', 'task-tracker', 'documents', 'ai-assistant']
-        : ['psm', 'learning', 'documents'],
+        ? ['psm', 'pdf-studio', 'learning', 'task-tracker', 'documents', 'ai-assistant']
+        : ['psm', 'pdf-studio', 'learning', 'documents'],
   }
 }
 

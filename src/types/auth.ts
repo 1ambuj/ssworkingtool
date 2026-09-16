@@ -1,6 +1,7 @@
 export type AppId =
   | 'psm'
   | 'learning'
+  | 'pdf-studio'
   | 'task-tracker'
   | 'documents'
   | 'ai-assistant'

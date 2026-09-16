@@ -7,6 +7,7 @@ import { useAuth } from '@/features/auth/AuthContext'
 import { buildTimesheetOpenUrl } from '@/lib/timesheet-handoff'
 
 function openUrlFor(app: CatalogApp, token: string | null) {
+  if (app.kind === 'desktop') return app.url
   if (app.id === 'psm' && token) return buildTimesheetOpenUrl(token)
   return app.url
 }
@@ -174,24 +175,41 @@ export function HomePage() {
           </div>
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2">
-            {live.map((app) => (
-              <a
-                key={app.id}
-                href={openUrlFor(app, token)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-start justify-between gap-4 rounded-2xl border border-border/80 bg-panel p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-md"
-              >
-                <div>
-                  <p className="text-base font-semibold text-ink">{app.name}</p>
-                  <p className="mt-1 text-sm text-brand-700">{app.tagline}</p>
-                  <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted">
-                    {app.description}
-                  </p>
-                </div>
-                <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted transition group-hover:text-brand-700" />
-              </a>
-            ))}
+            {live.map((app) => {
+              const href = openUrlFor(app, token)
+              const isInternal = app.kind === 'desktop' || href.startsWith('/')
+              const className =
+                'group flex items-start justify-between gap-4 rounded-2xl border border-border/80 bg-panel p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-md'
+
+              const inner = (
+                <>
+                  <div>
+                    <p className="text-base font-semibold text-ink">{app.name}</p>
+                    <p className="mt-1 text-sm text-brand-700">{app.tagline}</p>
+                    <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted">
+                      {app.description}
+                    </p>
+                  </div>
+                  <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted transition group-hover:text-brand-700" />
+                </>
+              )
+
+              return isInternal ? (
+                <Link key={app.id} to={href} className={className}>
+                  {inner}
+                </Link>
+              ) : (
+                <a
+                  key={app.id}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={className}
+                >
+                  {inner}
+                </a>
+              )
+            })}
           </div>
 
           {soon.length > 0 ? (
