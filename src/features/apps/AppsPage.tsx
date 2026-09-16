@@ -4,22 +4,20 @@ import { useAuth } from '@/features/auth/AuthContext'
 
 export function AppsPage() {
   const { user } = useAuth()
-  const apps = getAllowedApps(user?.allowedApps)
-  const live = apps.filter((app) => app.status === 'live')
-  const soon = apps.filter((app) => app.status === 'soon')
+  const live = getAllowedApps(user?.allowedApps).filter((app) => app.status === 'live')
 
   return (
     <div className="mx-auto max-w-6xl space-y-10 px-6 py-10 md:px-8">
       <header>
         <p className="text-sm font-medium tracking-[0.16em] text-brand-700 uppercase">
-          Directory
+          Software
         </p>
         <h1 className="font-display mt-3 text-3xl font-semibold tracking-tight text-ink md:text-4xl">
           All tools
         </h1>
         <p className="mt-3 max-w-2xl text-base text-muted">
-          Open a live tool in a new tab. Coming-soon apps will use the same
-          single sign-on once they are ready.
+          Web apps open in your browser. Desktop apps let you pick Windows or Mac
+          before download.
         </p>
       </header>
 
@@ -31,25 +29,12 @@ export function AppsPage() {
           </p>
         </div>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {live.map((app) => (
             <AppCard key={app.id} {...app} />
           ))}
         </div>
       )}
-
-      {soon.length > 0 ? (
-        <section>
-          <h2 className="text-sm font-medium tracking-[0.16em] text-muted uppercase">
-            Coming later
-          </h2>
-          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {soon.map((app) => (
-              <AppCard key={app.id} {...app} />
-            ))}
-          </div>
-        </section>
-      ) : null}
     </div>
   )
 }
