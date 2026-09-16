@@ -13,17 +13,12 @@ export function OsDownloadPicker({ compact = false }: { compact?: boolean }) {
   const [os, setOs] = useState<OsChoice>('windows')
   const macReady = Boolean(PDF_STUDIO_MAC_URL)
 
-  function select(next: OsChoice) {
-    if (next === 'mac' && !macReady) return
-    setOs(next)
-  }
-
   return (
     <div className={compact ? 'space-y-3' : 'space-y-4'}>
       <div className="inline-flex rounded-xl border border-border bg-surface/80 p-1">
         <button
           type="button"
-          onClick={() => select('windows')}
+          onClick={() => setOs('windows')}
           className={cn(
             'inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition',
             os === 'windows'
@@ -36,14 +31,12 @@ export function OsDownloadPicker({ compact = false }: { compact?: boolean }) {
         </button>
         <button
           type="button"
-          onClick={() => select('mac')}
-          disabled={!macReady}
+          onClick={() => setOs('mac')}
           className={cn(
             'inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition',
             os === 'mac'
               ? 'bg-panel text-ink shadow-sm'
               : 'text-muted hover:text-ink',
-            !macReady && 'cursor-not-allowed opacity-50',
           )}
         >
           <Apple className="h-4 w-4" />

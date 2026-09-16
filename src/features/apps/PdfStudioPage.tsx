@@ -1,4 +1,4 @@
-import { ExternalLink } from 'lucide-react'
+import { Download, ExternalLink } from 'lucide-react'
 import { Navigate } from 'react-router-dom'
 import { OsDownloadPicker } from '@/features/apps/OsDownloadPicker'
 import {
@@ -21,23 +21,24 @@ export function PdfStudioPage() {
     <div className="mx-auto max-w-3xl space-y-10 px-6 py-10 md:px-8 md:py-12">
       <header>
         <p className="text-sm font-medium tracking-[0.16em] text-brand-700 uppercase">
-          Desktop software
+          Desktop tool
         </p>
         <h1 className="font-display mt-3 text-3xl font-semibold tracking-tight text-ink md:text-4xl">
           {app?.name ?? 'SSA PDF Studio'}
         </h1>
         <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted">
-          {app?.description}
+          {app?.description ??
+            'Merge, convert, and compress PDFs on your computer. Install once, then open from the Start menu or Applications folder.'}
         </p>
       </header>
 
       <section className="rounded-2xl border border-border/80 bg-panel p-6 shadow-sm md:p-8">
         <h2 className="text-sm font-semibold tracking-wide text-ink uppercase">
-          Install
+          Download
         </h2>
         <p className="mt-2 text-sm text-muted">
-          Select your computer type, then download the official installer from
-          GitHub.
+          Choose Windows or Mac, then download the official installer from
+          GitHub. Your login is not sent to the installer.
         </p>
 
         <div className="mt-6">
@@ -48,27 +49,39 @@ export function PdfStudioPage() {
           href={PDF_STUDIO_RELEASES_PAGE}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-brand-700 hover:text-brand-600"
+          className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-brand-700 hover:text-brand-600"
         >
-          Release notes & older versions
+          All releases & release notes
           <ExternalLink className="h-3.5 w-3.5" />
         </a>
       </section>
 
       <section>
         <h2 className="text-sm font-semibold tracking-wide text-muted uppercase">
-          Features
+          What you can do
         </h2>
-        <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+        <ul className="mt-4 space-y-3">
           {PDF_STUDIO_FEATURES.map((feature) => (
             <li
               key={feature}
-              className="rounded-xl border border-border/60 bg-panel/60 px-4 py-3 text-sm text-ink"
+              className="flex gap-3 rounded-xl border border-border/60 bg-panel/60 px-4 py-3 text-sm text-ink"
             >
+              <Download className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
               {feature}
             </li>
           ))}
         </ul>
+      </section>
+
+      <section className="rounded-xl bg-surface/90 px-4 py-3 text-xs leading-relaxed text-muted">
+        <p className="font-medium text-ink">After install</p>
+        <p className="mt-1">
+          Windows: run{' '}
+          <span className="font-mono text-ink">SSA-PDF-Studio-Setup.exe</span>,
+          then open <strong className="text-ink">SSA PDF Studio</strong> from
+          the Start menu. Mac users: wait for the .dmg release or ask IT for the
+          beta build.
+        </p>
       </section>
     </div>
   )
