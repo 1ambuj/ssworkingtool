@@ -41,10 +41,10 @@ export function Footer() {
             </li>
             <li>
               <Link
-                to="/apps"
+                to="/tools"
                 className="text-white/75 transition hover:text-white"
               >
-                Apps
+                Tools
               </Link>
             </li>
             <li>

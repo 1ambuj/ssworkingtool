@@ -54,8 +54,7 @@ export function LoginPage() {
               Welcome
             </p>
             <h1 className="font-display mt-4 text-4xl leading-tight font-semibold tracking-tight text-ink">
-              Welcome to your tools.{' '}
-              <span className="brand-shimmer">Please explore.</span>
+              Welcome to your tools. Please explore.
             </h1>
             <p className="mt-5 max-w-lg text-base leading-relaxed text-muted">
               Sign in once with your SSA Intersoft account, then open Timesheet,

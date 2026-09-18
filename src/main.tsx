@@ -24,6 +24,10 @@ async function start() {
     // ignore — app should still boot
   }
 
+  // Never treat the portal as an editable document
+  document.designMode = 'off'
+  document.body?.removeAttribute('contenteditable')
+
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <App />

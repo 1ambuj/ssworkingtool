@@ -2,24 +2,24 @@ import { Apple, ArrowLeft, Download, ExternalLink, Monitor } from 'lucide-react'
 import { Link, Navigate } from 'react-router-dom'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
-import pdfStudioLogo from '@/assets/img/ssa_pdfstudio_logo.png'
+import youtubeLogo from '@/assets/img/youtube_logo.svg'
 import {
-  PDF_STUDIO_FEATURES,
-  PDF_STUDIO_MAC_URL,
-  PDF_STUDIO_RELEASES_PAGE,
-  PDF_STUDIO_WINDOWS_URL,
-} from '@/features/apps/pdf-studio-downloads'
+  YOUTUBE_DOWNLOADER_FEATURES,
+  YOUTUBE_DOWNLOADER_MAC_URL,
+  YOUTUBE_DOWNLOADER_RELEASES_PAGE,
+  YOUTUBE_DOWNLOADER_WINDOWS_URL,
+} from '@/features/apps/youtube-downloader-downloads'
 import { getCatalogApp } from '@/features/apps/catalog'
 import { useAuth } from '@/features/auth/AuthContext'
 
 type OsChoice = 'windows' | 'mac'
 
-export function PdfStudioPage() {
+export function YoutubeDownloaderPage() {
   const { user } = useAuth()
-  const app = getCatalogApp('pdf-studio')
-  const allowed = user?.allowedApps.includes('pdf-studio')
+  const app = getCatalogApp('youtube-downloader')
+  const allowed = user?.allowedApps.includes('youtube-downloader')
   const [os, setOs] = useState<OsChoice>('windows')
-  const macReady = Boolean(PDF_STUDIO_MAC_URL)
+  const macReady = Boolean(YOUTUBE_DOWNLOADER_MAC_URL)
 
   if (!allowed) {
     return <Navigate to="/tools" replace />
@@ -41,13 +41,12 @@ export function PdfStudioPage() {
           Tools
         </Link>
 
-        <div className="mt-8 grid gap-12 lg:mt-12 lg:grid-cols-[1fr_0.95fr] lg:gap-16 lg:items-start">
-          {/* Left: brand story */}
+        <div className="mt-8 grid gap-12 lg:mt-12 lg:grid-cols-[1fr_0.95fr] lg:items-start lg:gap-16">
           <div className="animate-fade-up">
             <div className="flex items-center gap-4">
               <img
-                src={pdfStudioLogo}
-                alt="SSA PDF Studio logo"
+                src={youtubeLogo}
+                alt="YouTube Downloader logo"
                 className="h-12 w-12 rounded-xl shadow-sm sm:h-14 sm:w-14"
               />
               <div>
@@ -55,17 +54,17 @@ export function PdfStudioPage() {
                   Desktop software
                 </p>
                 <h1 className="font-display mt-1 text-3xl leading-[1.05] font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl">
-                  {app?.name ?? 'SSA PDF Studio'}
+                  {app?.name ?? 'YouTube Downloader'}
                 </h1>
               </div>
             </div>
             <p className="mt-5 max-w-lg text-base leading-relaxed text-muted sm:text-lg">
               {app?.description ??
-                'Merge, convert, and compress PDFs on your computer. Install once — no browser upload, no second login.'}
+                'Download YouTube videos to your computer. Install once on Windows.'}
             </p>
 
             <ol className="mt-10 space-y-0 border-t border-border/70">
-              {PDF_STUDIO_FEATURES.map((feature, index) => (
+              {YOUTUBE_DOWNLOADER_FEATURES.map((feature, index) => (
                 <li
                   key={feature}
                   className="flex gap-4 border-b border-border/70 py-3.5 text-sm text-ink"
@@ -79,7 +78,6 @@ export function PdfStudioPage() {
             </ol>
           </div>
 
-          {/* Right: install panel */}
           <div className="animate-fade-up-delay">
             <div className="overflow-hidden rounded-[1.75rem] border border-border/70 bg-panel shadow-[0_30px_80px_-48px_rgba(28,25,23,0.5)] lg:rounded-[2rem]">
               <div className="border-b border-brand-700/40 bg-brand-600 px-6 py-6 sm:px-8">
@@ -157,8 +155,8 @@ export function PdfStudioPage() {
 
                 {os === 'windows' ? (
                   <a
-                    href={PDF_STUDIO_WINDOWS_URL}
-                    download
+                    href={YOUTUBE_DOWNLOADER_WINDOWS_URL}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700"
                   >
@@ -167,8 +165,8 @@ export function PdfStudioPage() {
                   </a>
                 ) : macReady ? (
                   <a
-                    href={PDF_STUDIO_MAC_URL}
-                    download
+                    href={YOUTUBE_DOWNLOADER_MAC_URL}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700"
                   >
@@ -189,11 +187,13 @@ export function PdfStudioPage() {
                 <div className="flex flex-col gap-3 border-t border-border/60 pt-5 sm:flex-row sm:items-center sm:justify-between">
                   <p className="text-xs leading-relaxed text-muted">
                     After install, open{' '}
-                    <span className="font-medium text-ink">SSA PDF Studio</span>{' '}
+                    <span className="font-medium text-ink">
+                      YouTube Downloader
+                    </span>{' '}
                     from the Start menu.
                   </p>
                   <a
-                    href={PDF_STUDIO_RELEASES_PAGE}
+                    href={YOUTUBE_DOWNLOADER_RELEASES_PAGE}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex shrink-0 items-center gap-1 text-xs font-medium text-brand-700 hover:text-brand-600"

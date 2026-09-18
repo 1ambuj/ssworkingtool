@@ -3,6 +3,7 @@ import { AppShell } from '@/components/shell/AppShell'
 import { PlaceholderPage } from '@/components/PlaceholderPage'
 import { AppsPage } from '@/features/apps/AppsPage'
 import { PdfStudioPage } from '@/features/apps/PdfStudioPage'
+import { YoutubeDownloaderPage } from '@/features/apps/YoutubeDownloaderPage'
 import { AuthProvider } from '@/features/auth/AuthContext'
 import { LoginPage } from '@/features/auth/LoginPage'
 import { ProtectedRoute } from '@/features/auth/ProtectedRoute'
@@ -19,8 +20,21 @@ export default function App() {
           <Route element={<ProtectedRoute />}>
             <Route element={<AppShell />}>
               <Route index element={<HomePage />} />
-              <Route path="apps" element={<AppsPage />} />
-              <Route path="apps/pdf-studio" element={<PdfStudioPage />} />
+              <Route path="tools" element={<AppsPage />} />
+              <Route path="tools/pdf-studio" element={<PdfStudioPage />} />
+              <Route
+                path="tools/youtube-downloader"
+                element={<YoutubeDownloaderPage />}
+              />
+              <Route path="apps" element={<Navigate to="/tools" replace />} />
+              <Route
+                path="apps/pdf-studio"
+                element={<Navigate to="/tools/pdf-studio" replace />}
+              />
+              <Route
+                path="apps/youtube-downloader"
+                element={<Navigate to="/tools/youtube-downloader" replace />}
+              />
               <Route path="settings" element={<SettingsPage />} />
               <Route
                 path="admin/registry"

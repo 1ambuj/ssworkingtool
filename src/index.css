@@ -42,8 +42,8 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Syne', 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Manrope', ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
@@ -98,6 +98,26 @@ body {
     radial-gradient(ellipse 70% 45% at 0% -5%, rgb(61 107 95 / 0.14), transparent),
     radial-gradient(ellipse 50% 35% at 100% 0%, rgb(196 150 90 / 0.12), transparent);
   -webkit-font-smoothing: antialiased;
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+input,
+textarea,
+select,
+[contenteditable='true'] {
+  cursor: text;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+a,
+button,
+[role='button'],
+label[for],
+summary {
+  cursor: pointer;
 }
 
 @keyframes fade-up {

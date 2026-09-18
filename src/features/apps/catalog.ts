@@ -53,7 +53,27 @@ export const catalog: CatalogApp[] = [
       'Install once on Windows (Mac build coming)',
       'Download from CoreWorkspace — no second login',
     ],
-    url: '/apps/pdf-studio',
+    url: '/tools/pdf-studio',
+    status: 'live',
+    kind: 'desktop',
+    accessNote: 'Desktop download',
+  },
+  {
+    id: 'youtube-downloader',
+    name: 'YouTube Downloader',
+    tagline: 'Save videos offline',
+    description:
+      'Download YouTube videos to your computer for offline viewing and firm reference work.',
+    actions: [
+      'Download videos in common formats',
+      'Save offline for later use',
+      'Install once on Windows',
+    ],
+    details: [
+      'Windows installer from official GitHub release',
+      'Download from CoreWorkspace — no second login',
+    ],
+    url: '/tools/youtube-downloader',
     status: 'live',
     kind: 'desktop',
     accessNote: 'Desktop download',
@@ -80,11 +100,23 @@ export const catalog: CatalogApp[] = [
   },
 ]
 
-export const DEFAULT_ALLOWED_APPS: AppId[] = ['psm', 'pdf-studio', 'learning']
+export const DEFAULT_ALLOWED_APPS: AppId[] = [
+  'psm',
+  'pdf-studio',
+  'youtube-downloader',
+  'learning',
+]
 
 export function getAllowedApps(allowedApps: AppId[] | undefined): CatalogApp[] {
   if (!allowedApps?.length) return []
   return catalog.filter((app) => allowedApps.includes(app.id))
+}
+
+/** Installable desktop tools only (Tools page) — not web apps like Intersoft/Learning */
+export function getDesktopTools(allowedApps: AppId[] | undefined): CatalogApp[] {
+  return getAllowedApps(allowedApps).filter(
+    (app) => app.kind === 'desktop' && app.status === 'live',
+  )
 }
 
 export function getCatalogApp(id: AppId) {
