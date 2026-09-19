@@ -7,7 +7,7 @@ export function AppShell() {
     <div className="flex min-h-screen flex-col">
       <TopBar />
       <main className="min-w-0 flex-1">
-        <div className="animate-fade-up">
+        <div className="animate-soft-rise">
           <Outlet />
         </div>
       </main>

@@ -2,33 +2,49 @@ import { ArrowUpRight, Monitor } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import pdfStudioLogo from '@/assets/img/ssa_pdfstudio_logo.png'
 import youtubeLogo from '@/assets/img/youtube_logo.svg'
+import pdfRedactionLogo from '@/assets/img/pdf_redaction_logo.png'
 import type { CatalogApp } from '@/features/apps/catalog'
 import { getDesktopTools } from '@/features/apps/catalog'
 import { useAuth } from '@/features/auth/AuthContext'
 
 function ToolIcon({ tool }: { tool: CatalogApp }) {
+  const frameClass =
+    'mx-auto flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-surface shadow-sm ring-1 ring-border/60 sm:mx-0'
+
   if (tool.id === 'pdf-studio') {
     return (
-      <img
-        src={pdfStudioLogo}
-        alt=""
-        className="mx-auto h-16 w-16 shrink-0 rounded-2xl shadow-sm sm:mx-0"
-      />
+      <div className={frameClass}>
+        <img
+          src={pdfStudioLogo}
+          alt=""
+          className="h-12 w-12 object-contain"
+        />
+      </div>
     )
   }
 
   if (tool.id === 'youtube-downloader') {
     return (
-      <img
-        src={youtubeLogo}
-        alt=""
-        className="mx-auto h-16 w-16 shrink-0 rounded-2xl shadow-sm sm:mx-0"
-      />
+      <div className={frameClass}>
+        <img src={youtubeLogo} alt="" className="h-12 w-12 object-contain" />
+      </div>
+    )
+  }
+
+  if (tool.id === 'pdf-redaction') {
+    return (
+      <div className={frameClass}>
+        <img
+          src={pdfRedactionLogo}
+          alt=""
+          className="h-12 w-12 object-contain"
+        />
+      </div>
     )
   }
 
   return (
-    <div className="mx-auto flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-brand-600 text-white shadow-sm sm:mx-0">
+    <div className={`${frameClass} bg-brand-600 text-white ring-0`}>
       <Monitor className="h-8 w-8" />
     </div>
   )
@@ -41,11 +57,11 @@ export function AppsPage() {
   return (
     <div className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-0 h-72 w-[36rem] -translate-x-1/2 rounded-full bg-brand-100/40 blur-3xl" />
+        <div className="animate-blob absolute left-1/2 top-0 h-72 w-[36rem] -translate-x-1/2 rounded-full bg-brand-100/40 blur-3xl" />
       </div>
 
       <div className="relative mx-auto max-w-3xl px-5 py-12 sm:px-6 md:px-8 md:py-16">
-        <header className="max-w-lg">
+        <header className="animate-fade-up max-w-lg">
           <p className="text-sm font-medium tracking-[0.2em] text-brand-700 uppercase">
             Tools
           </p>
@@ -66,9 +82,16 @@ export function AppsPage() {
           </div>
         ) : (
           <ul className="mt-10 space-y-4 sm:mt-12">
-            {tools.map((tool) => (
-              <li key={tool.id}>
-                <article className="animate-fade-up overflow-hidden rounded-2xl border border-border/70 bg-panel shadow-sm">
+            {tools.map((tool, index) => (
+              <li
+                key={tool.id}
+                className={
+                  index === 0
+                    ? 'animate-fade-up-delay'
+                    : 'animate-fade-up-delay-2'
+                }
+              >
+                <article className="hover-lift overflow-hidden rounded-2xl border border-border/70 bg-panel shadow-sm">
                   <div className="flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:gap-6 sm:p-6">
                     <ToolIcon tool={tool} />
 

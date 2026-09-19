@@ -4,6 +4,7 @@ import { PlaceholderPage } from '@/components/PlaceholderPage'
 import { AppsPage } from '@/features/apps/AppsPage'
 import { PdfStudioPage } from '@/features/apps/PdfStudioPage'
 import { YoutubeDownloaderPage } from '@/features/apps/YoutubeDownloaderPage'
+import { PdfRedactionPage } from '@/features/apps/PdfRedactionPage'
 import { AuthProvider } from '@/features/auth/AuthContext'
 import { LoginPage } from '@/features/auth/LoginPage'
 import { ProtectedRoute } from '@/features/auth/ProtectedRoute'
@@ -26,6 +27,10 @@ export default function App() {
                 path="tools/youtube-downloader"
                 element={<YoutubeDownloaderPage />}
               />
+              <Route
+                path="tools/pdf-redaction"
+                element={<PdfRedactionPage />}
+              />
               <Route path="apps" element={<Navigate to="/tools" replace />} />
               <Route
                 path="apps/pdf-studio"
@@ -34,6 +39,10 @@ export default function App() {
               <Route
                 path="apps/youtube-downloader"
                 element={<Navigate to="/tools/youtube-downloader" replace />}
+              />
+              <Route
+                path="apps/pdf-redaction"
+                element={<Navigate to="/tools/pdf-redaction" replace />}
               />
               <Route path="settings" element={<SettingsPage />} />
               <Route

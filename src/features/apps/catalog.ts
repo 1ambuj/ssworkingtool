@@ -79,6 +79,26 @@ export const catalog: CatalogApp[] = [
     accessNote: 'Desktop download',
   },
   {
+    id: 'pdf-redaction',
+    name: 'PDF Redaction',
+    tagline: 'Permanently hide sensitive text',
+    description:
+      'Offline Windows app to permanently redact PDFs — marked areas cannot be recovered from the exported file.',
+    actions: [
+      'Upload a PDF and mark areas to redact',
+      'Export a permanent redacted PDF',
+      'Install once on Windows',
+    ],
+    details: [
+      'Windows installer from official GitHub release',
+      'Download from CoreWorkspace — no second login',
+    ],
+    url: '/tools/pdf-redaction',
+    status: 'live',
+    kind: 'desktop',
+    accessNote: 'Desktop download',
+  },
+  {
     id: 'learning',
     name: 'Learning',
     tagline: 'Courses for your role',
@@ -104,6 +124,7 @@ export const DEFAULT_ALLOWED_APPS: AppId[] = [
   'psm',
   'pdf-studio',
   'youtube-downloader',
+  'pdf-redaction',
   'learning',
 ]
 

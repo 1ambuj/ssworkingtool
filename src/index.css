@@ -123,11 +123,31 @@ summary {
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes soft-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -141,6 +161,16 @@ summary {
   }
 }
 
+@keyframes blob-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(12px, -10px) scale(1.04);
+  }
+}
+
 @keyframes shimmer {
   0% {
     background-position: 0% 50%;
@@ -151,15 +181,68 @@ summary {
 }
 
 .animate-fade-up {
-  animation: fade-up 0.5s ease-out both;
+  animation: fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .animate-fade-up-delay {
-  animation: fade-up 0.7s ease-out 0.12s both;
+  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+.animate-fade-up-delay-2 {
+  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+.animate-fade-up-delay-3 {
+  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.32s both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.45s ease-out both;
+}
+
+.animate-soft-rise {
+  animation: soft-rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .animate-float-soft {
   animation: float-soft 5s ease-in-out infinite;
+}
+
+.animate-blob {
+  animation: blob-drift 14s ease-in-out infinite;
+}
+
+.animate-blob-slow {
+  animation: blob-drift 18s ease-in-out infinite reverse;
+}
+
+.hover-lift {
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-fade-up-delay,
+  .animate-fade-up-delay-2,
+  .animate-fade-up-delay-3,
+  .animate-fade-in,
+  .animate-soft-rise,
+  .animate-float-soft,
+  .animate-blob,
+  .animate-blob-slow {
+    animation: none !important;
+  }
+
+  .hover-lift:hover {
+    transform: none;
+  }
 }
 
 .font-display {

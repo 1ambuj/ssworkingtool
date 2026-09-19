@@ -3,6 +3,7 @@ export type AppId =
   | 'learning'
   | 'pdf-studio'
   | 'youtube-downloader'
+  | 'pdf-redaction'
   | 'task-tracker'
   | 'documents'
   | 'ai-assistant'
