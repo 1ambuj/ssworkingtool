@@ -9,7 +9,7 @@ import { useAuth } from '@/features/auth/AuthContext'
 
 function ToolIcon({ tool }: { tool: CatalogApp }) {
   const frameClass =
-    'mx-auto flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-surface shadow-sm ring-1 ring-border/60 sm:mx-0'
+    'flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-surface shadow-sm ring-1 ring-border/60'
 
   if (tool.id === 'pdf-studio') {
     return (
@@ -17,7 +17,7 @@ function ToolIcon({ tool }: { tool: CatalogApp }) {
         <img
           src={pdfStudioLogo}
           alt=""
-          className="h-12 w-12 object-contain"
+          className="h-10 w-10 object-contain"
         />
       </div>
     )
@@ -26,7 +26,7 @@ function ToolIcon({ tool }: { tool: CatalogApp }) {
   if (tool.id === 'youtube-downloader') {
     return (
       <div className={frameClass}>
-        <img src={youtubeLogo} alt="" className="h-12 w-12 object-contain" />
+        <img src={youtubeLogo} alt="" className="h-10 w-10 object-contain" />
       </div>
     )
   }
@@ -37,7 +37,7 @@ function ToolIcon({ tool }: { tool: CatalogApp }) {
         <img
           src={pdfRedactionLogo}
           alt=""
-          className="h-12 w-12 object-contain"
+          className="h-10 w-10 object-contain"
         />
       </div>
     )
@@ -45,7 +45,7 @@ function ToolIcon({ tool }: { tool: CatalogApp }) {
 
   return (
     <div className={`${frameClass} bg-brand-600 text-white ring-0`}>
-      <Monitor className="h-8 w-8" />
+      <Monitor className="h-7 w-7" />
     </div>
   )
 }
@@ -60,15 +60,15 @@ export function AppsPage() {
         <div className="animate-blob absolute left-1/2 top-0 h-72 w-[36rem] -translate-x-1/2 rounded-full bg-brand-100/40 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto max-w-3xl px-5 py-12 sm:px-6 md:px-8 md:py-16">
-        <header className="animate-fade-up max-w-lg">
-          <p className="text-sm font-medium tracking-[0.2em] text-brand-700 uppercase">
+      <div className="relative mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-28">
+        <header className="animate-fade-up max-w-2xl">
+          <p className="text-sm font-medium tracking-[0.18em] text-brand-700 uppercase md:text-base">
             Tools
           </p>
-          <h1 className="font-display mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+          <h1 className="font-display mt-5 text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl">
             Install on your computer
           </h1>
-          <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
+          <p className="mt-6 text-base leading-relaxed text-muted md:text-lg">
             Desktop software for firm work. Download once, use offline.
           </p>
         </header>
@@ -81,23 +81,22 @@ export function AppsPage() {
             </p>
           </div>
         ) : (
-          <ul className="mt-10 space-y-4 sm:mt-12">
+          <ul className="mt-10 grid gap-5 sm:mt-12 sm:grid-cols-2 lg:gap-6">
             {tools.map((tool, index) => (
               <li
                 key={tool.id}
                 className={
-                  index === 0
-                    ? 'animate-fade-up-delay'
-                    : 'animate-fade-up-delay-2'
+                  index % 2 === 0
+                    ? 'animate-fade-up-delay h-full'
+                    : 'animate-fade-up-delay-2 h-full'
                 }
               >
-                <article className="hover-lift overflow-hidden rounded-2xl border border-border/70 bg-panel shadow-sm">
-                  <div className="flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:gap-6 sm:p-6">
+                <article className="hover-lift flex h-full flex-col overflow-hidden rounded-2xl border border-border/70 bg-panel p-5 shadow-sm sm:p-6">
+                  <div className="flex items-start gap-4">
                     <ToolIcon tool={tool} />
-
-                    <div className="min-w-0 flex-1 text-center sm:text-left">
-                      <div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
-                        <h2 className="font-display text-xl font-semibold tracking-tight text-ink">
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h2 className="font-display text-lg font-semibold tracking-tight text-ink sm:text-xl">
                           {tool.name}
                         </h2>
                         <span className="inline-flex items-center gap-1 rounded-md bg-brand-50 px-2 py-0.5 text-[11px] font-medium text-brand-700">
@@ -108,33 +107,34 @@ export function AppsPage() {
                       <p className="mt-1 text-sm font-medium text-brand-700">
                         {tool.tagline}
                       </p>
-                      <p className="mt-2 text-sm leading-relaxed text-muted">
-                        {tool.description}
-                      </p>
-
-                      {tool.actions.length > 0 ? (
-                        <ul className="mt-3 hidden space-y-1 sm:block">
-                          {tool.actions.slice(0, 3).map((action) => (
-                            <li
-                              key={action}
-                              className="flex items-center gap-2 text-xs text-muted"
-                            >
-                              <span className="h-1 w-1 shrink-0 rounded-full bg-brand-600" />
-                              {action}
-                            </li>
-                          ))}
-                        </ul>
-                      ) : null}
-
-                      <Link
-                        to={tool.url}
-                        className="group mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 sm:w-auto"
-                      >
-                        Get installer
-                        <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                      </Link>
                     </div>
                   </div>
+
+                  <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">
+                    {tool.description}
+                  </p>
+
+                  {tool.actions.length > 0 ? (
+                    <ul className="mt-4 space-y-1.5">
+                      {tool.actions.slice(0, 3).map((action) => (
+                        <li
+                          key={action}
+                          className="flex items-center gap-2 text-xs text-muted"
+                        >
+                          <span className="h-1 w-1 shrink-0 rounded-full bg-brand-600" />
+                          {action}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+
+                  <Link
+                    to={tool.url}
+                    className="group mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700"
+                  >
+                    Get installer
+                    <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
                 </article>
               </li>
             ))}

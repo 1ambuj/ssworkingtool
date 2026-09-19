@@ -142,7 +142,7 @@ export function HomePage() {
                 href={learning.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-10 inline-flex items-center gap-2 text-base font-semibold text-brand-700 transition hover:gap-3 hover:text-brand-600"
+                className="hover-lift mt-10 inline-flex items-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-base font-semibold text-white transition hover:bg-brand-700"
               >
                 Open Learning (LAN)
                 <ArrowUpRight className="h-5 w-5" />
