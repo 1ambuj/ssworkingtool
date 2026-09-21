@@ -1,6 +1,7 @@
 export type AppId =
   | 'psm'
   | 'learning'
+  | 'epdf-book'
   | 'pdf-studio'
   | 'youtube-downloader'
   | 'pdf-redaction'

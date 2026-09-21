@@ -9,7 +9,7 @@ import { useAuth } from '@/features/auth/AuthContext'
 
 function ToolIcon({ tool }: { tool: CatalogApp }) {
   const frameClass =
-    'flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-surface shadow-sm ring-1 ring-border/60'
+    'flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-surface shadow-sm ring-1 ring-border/60 transition duration-200 group-hover:ring-brand-200'
 
   if (tool.id === 'pdf-studio') {
     return (
@@ -91,7 +91,11 @@ export function AppsPage() {
                     : 'animate-fade-up-delay-2 h-full'
                 }
               >
-                <article className="hover-lift flex h-full flex-col overflow-hidden rounded-2xl border border-border/70 bg-panel p-5 shadow-sm sm:p-6">
+                <Link
+                  to={tool.url}
+                  className="group hover-lift flex h-full flex-col overflow-hidden rounded-2xl border border-border/70 bg-panel p-5 shadow-sm transition duration-200 hover:border-brand-100 hover:shadow-md sm:p-6"
+                  aria-label={`Open ${tool.name}`}
+                >
                   <div className="flex items-start gap-4">
                     <ToolIcon tool={tool} />
                     <div className="min-w-0 flex-1">
@@ -128,14 +132,11 @@ export function AppsPage() {
                     </ul>
                   ) : null}
 
-                  <Link
-                    to={tool.url}
-                    className="group mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700"
-                  >
+                  <span className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition group-hover:bg-brand-700">
                     Get installer
                     <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </Link>
-                </article>
+                  </span>
+                </Link>
               </li>
             ))}
           </ul>

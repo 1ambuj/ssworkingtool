@@ -1,6 +1,10 @@
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { LearningPreview, TimesheetPreview } from '@/components/ProductPreview'
+import {
+  EpdfBookPreview,
+  LearningPreview,
+  TimesheetPreview,
+} from '@/components/ProductPreview'
 import type { CatalogApp } from '@/features/apps/catalog'
 import { getAllowedApps, getCatalogApp } from '@/features/apps/catalog'
 import { useAuth } from '@/features/auth/AuthContext'
@@ -18,9 +22,11 @@ export function HomePage() {
   const apps = getAllowedApps(user?.allowedApps)
   const timesheet = getCatalogApp('psm')
   const learning = getCatalogApp('learning')
+  const epdfBook = getCatalogApp('epdf-book')
   const live = apps.filter((app) => app.status === 'live')
   const timesheetUrl = timesheet ? openUrlFor(timesheet, token) : null
   const hasLearning = apps.some((a) => a.id === 'learning')
+  const hasEpdf = apps.some((a) => a.id === 'epdf-book')
 
   return (
     <div>
@@ -102,9 +108,23 @@ export function HomePage() {
               ) : null}
             </div>
             <div className="animate-fade-up-delay">
-              <div className="animate-float-soft">
-                <TimesheetPreview />
-              </div>
+              {timesheetUrl ? (
+                <a
+                  href={timesheetUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block cursor-pointer"
+                  aria-label={`Open ${timesheet.name}`}
+                >
+                  <div className="animate-float-soft">
+                    <TimesheetPreview />
+                  </div>
+                </a>
+              ) : (
+                <div className="animate-float-soft">
+                  <TimesheetPreview />
+                </div>
+              )}
             </div>
           </div>
         </section>
@@ -114,7 +134,15 @@ export function HomePage() {
         <section className="px-6 py-20 md:px-8 md:py-28">
           <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_0.95fr] lg:items-center lg:gap-16">
             <div className="animate-fade-up-delay order-2 lg:order-1 lg:pr-2">
-              <LearningPreview />
+              <a
+                href={learning.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block cursor-pointer"
+                aria-label={`Open ${learning.name}`}
+              >
+                <LearningPreview />
+              </a>
             </div>
             <div className="animate-soft-rise order-1 lg:order-2 lg:pl-2">
               <p className="text-sm font-medium tracking-[0.16em] text-brand-700 uppercase md:text-base">
@@ -146,6 +174,58 @@ export function HomePage() {
               >
                 Open Learning (LAN)
                 <ArrowUpRight className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {epdfBook && hasEpdf ? (
+        <section className="px-6 py-20 md:px-8 md:py-28">
+          <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16">
+            <div className="animate-soft-rise">
+              <p className="text-sm font-medium tracking-[0.16em] text-brand-700 uppercase md:text-base">
+                Create
+              </p>
+              <h2 className="font-display mt-4 text-4xl font-semibold tracking-tight text-ink md:text-5xl">
+                {epdfBook.name}
+              </h2>
+              <p className="mt-3 text-xl text-brand-700">{epdfBook.tagline}</p>
+              <p className="mt-5 text-lg leading-relaxed text-muted">
+                {epdfBook.description}
+              </p>
+              <ul className="mt-8 space-y-4">
+                {(epdfBook.actions.length
+                  ? epdfBook.actions
+                  : epdfBook.details
+                ).map((item) => (
+                  <li key={item} className="flex gap-3 text-base text-ink">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-600" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={epdfBook.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover-lift mt-10 inline-flex items-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-base font-semibold text-white transition hover:bg-brand-700"
+              >
+                Open ePDF book
+                <ArrowUpRight className="h-5 w-5" />
+              </a>
+            </div>
+            <div className="animate-fade-up-delay">
+              <a
+                href={epdfBook.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block cursor-pointer"
+                aria-label={`Open ${epdfBook.name}`}
+              >
+                <div className="animate-float-soft">
+                  <EpdfBookPreview />
+                </div>
               </a>
             </div>
           </div>

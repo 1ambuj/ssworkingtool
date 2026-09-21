@@ -118,6 +118,26 @@ export const catalog: CatalogApp[] = [
     kind: 'web',
     accessNote: 'LAN access',
   },
+  {
+    id: 'epdf-book',
+    name: 'ePDF book',
+    tagline: 'Create & publish PDF books',
+    description:
+      'Write, design, and publish professional PDF books, reports, and documents in the browser.',
+    actions: [
+      'Start a new book or import Word/PDF',
+      'Pick a template and refine layout',
+      'Review and publish as designed PDF',
+    ],
+    details: [
+      'Opens in your browser — no install',
+      'Local studio keeps files on this computer',
+    ],
+    url: 'https://epdf-book-editor.onrender.com/',
+    status: 'live',
+    kind: 'web',
+    accessNote: 'Web app',
+  },
 ]
 
 export const DEFAULT_ALLOWED_APPS: AppId[] = [
@@ -126,6 +146,7 @@ export const DEFAULT_ALLOWED_APPS: AppId[] = [
   'youtube-downloader',
   'pdf-redaction',
   'learning',
+  'epdf-book',
 ]
 
 export function getAllowedApps(allowedApps: AppId[] | undefined): CatalogApp[] {

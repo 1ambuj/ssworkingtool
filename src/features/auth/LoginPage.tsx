@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
+import { BrandLogo } from '@/components/shell/BrandLogo'
 import { useAuth } from '@/features/auth/AuthContext'
 
 export function LoginPage() {
@@ -34,16 +35,12 @@ export function LoginPage() {
       </div>
 
       <header className="animate-fade-in relative z-10 border-b border-border/60 bg-panel/80 px-6 py-5 backdrop-blur-md md:px-8">
-        <div className="mx-auto flex max-w-6xl items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-xs font-bold text-white">
-            CW
-          </div>
-          <div>
-            <p className="font-display text-base font-semibold tracking-tight text-ink">
-              CoreWorkspace
-            </p>
-            <p className="text-xs text-muted">Firm tools in one place</p>
-          </div>
+        <div className="mx-auto flex max-w-6xl items-center">
+          <BrandLogo
+            size="md"
+            showWordmark
+            tagline="Firm tools in one place"
+          />
         </div>
       </header>
 

@@ -1,5 +1,6 @@
 import { LogOut } from 'lucide-react'
 import { NavLink, useNavigate } from 'react-router-dom'
+import { BrandLogo } from '@/components/shell/BrandLogo'
 import { useAuth } from '@/features/auth/AuthContext'
 
 const links: { to: string; label: string; end?: boolean }[] = [
@@ -22,16 +23,13 @@ export function TopBar() {
     <header className="animate-fade-in sticky top-0 z-30 border-b border-border/70 bg-panel/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4 md:px-8 md:py-5">
         <div className="flex min-w-0 items-center gap-6 md:gap-8">
-          <NavLink to="/" className="flex shrink-0 items-center gap-3">
-            <div className="flex h-11 w-16 items-center justify-center rounded-md bg-brand-600 text-sm font-bold text-white shadow-sm">
-              CW
-            </div>
-            <div className="hidden sm:block">
-              <p className="font-display text-base font-semibold tracking-tight text-ink">
-                CoreWorkspace
-              </p>
-              <p className="text-xs text-muted">Firm portal</p>
-            </div>
+          <NavLink to="/" className="flex shrink-0 items-center">
+            <BrandLogo
+              size="lg"
+              showWordmark
+              hideWordmarkOnMobile
+              tagline="Firm portal"
+            />
           </NavLink>
 
           <nav className="flex items-center gap-1.5 md:gap-2">
