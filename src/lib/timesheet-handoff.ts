@@ -25,5 +25,7 @@ export function clearTimesheetSession() {
 
 export function buildTimesheetOpenUrl(token: string) {
   const base = PSM_APP_URL.replace(/\/$/, '')
-  return `${base}/dashboard#sso=${encodeURIComponent(token)}`
+  // Query + hash: Intersoft accepts either; query survives some redirects better.
+  const sso = encodeURIComponent(token)
+  return `${base}/dashboard?sso=${sso}#sso=${sso}`
 }

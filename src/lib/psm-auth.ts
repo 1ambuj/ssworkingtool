@@ -15,9 +15,13 @@ interface PsmLoginUser {
 interface PsmLoginResponse {
   success?: boolean
   message?: string
+  code?: string
   token?: string
   user?: PsmLoginUser
 }
+
+const LOGIN_TIMEOUT_MS = 45000
+const MAX_ATTEMPTS = 3
 
 /**
  * Login against the Timesheet / PSM auth API.
@@ -33,33 +37,84 @@ export async function loginWithPsm(
     throw new Error('Email and password are required.')
   }
 
-  let response: Response
-  try {
-    response = await fetch(`${PSM_API_URL}/auth/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email,
-        password,
-        login_type: 'employee',
-      }),
-    })
-  } catch {
-    throw new Error(
-      `Cannot reach Timesheet login API at ${PSM_API_URL}. Start the Timesheet API and try again.`,
-    )
+  let lastNetworkError: unknown = null
+
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    const controller = new AbortController()
+    const timer = window.setTimeout(() => controller.abort(), LOGIN_TIMEOUT_MS)
+
+    try {
+      const response = await fetch(`${PSM_API_URL}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          password,
+          login_type: 'employee',
+        }),
+        signal: controller.signal,
+      })
+
+      const data = (await response.json().catch(() => null)) as PsmLoginResponse | null
+
+      if (!response.ok || !data?.success || !data.token || !data.user) {
+        if (data?.code === 'EMPLOYEE_NOT_LINKED') {
+          throw new Error(
+            data.message ||
+              'This account is not linked to an employee in Timesheet. Ask admin to link it.',
+          )
+        }
+        throw new Error(data?.message || 'Invalid email or password.')
+      }
+
+      if (data.user.employee_id == null || data.user.employee_id === '') {
+        throw new Error(
+          'Login succeeded but no employee record is linked. Timesheet data will be empty until admin links this user.',
+        )
+      }
+
+      return {
+        token: data.token,
+        user: mapPsmUser(data.user),
+      }
+    } catch (err) {
+      // Business errors (wrong password / not linked) — do not retry.
+      if (err instanceof Error && !isNetworkLikeError(err)) {
+        throw err
+      }
+      lastNetworkError = err
+      if (attempt < MAX_ATTEMPTS) {
+        await sleep(1200 * attempt)
+        continue
+      }
+    } finally {
+      window.clearTimeout(timer)
+    }
   }
 
-  const data = (await response.json().catch(() => null)) as PsmLoginResponse | null
+  throw new Error(describeNetworkFailure(lastNetworkError))
+}
 
-  if (!response.ok || !data?.success || !data.token || !data.user) {
-    throw new Error(data?.message || 'Invalid email or password.')
-  }
+function isNetworkLikeError(err: Error) {
+  return (
+    err.name === 'AbortError' ||
+    err.message.includes('Failed to fetch') ||
+    err.message.includes('NetworkError') ||
+    err.message.includes('Load failed')
+  )
+}
 
-  return {
-    token: data.token,
-    user: mapPsmUser(data.user),
+function describeNetworkFailure(err: unknown) {
+  const aborted =
+    err instanceof Error && (err.name === 'AbortError' || err.message.includes('aborted'))
+  if (aborted) {
+    return `Timesheet API at ${PSM_API_URL} timed out. Render may be waking up — wait 30s and try again.`
   }
+  return `Cannot reach Timesheet login API at ${PSM_API_URL}. Check network/CORS, or wait if Render is cold-starting, then try again.`
+}
+
+function sleep(ms: number) {
+  return new Promise((resolve) => window.setTimeout(resolve, ms))
 }
 
 function mapPsmUser(user: PsmLoginUser): AuthUser {
