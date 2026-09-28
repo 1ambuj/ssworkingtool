@@ -49,7 +49,7 @@ export function OsDownloadPicker({ compact = false }: { compact?: boolean }) {
           download
           rel="noopener noreferrer"
           className={cn(
-            'inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-700 px-5 font-semibold text-white shadow-sm transition hover:bg-[#081a32] sm:w-auto',
+            'inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 font-semibold text-white shadow-sm transition hover:bg-brand-700 sm:w-auto',
             compact ? 'py-2.5 text-sm' : 'py-3.5 text-sm sm:text-base',
           )}
         >
@@ -62,7 +62,7 @@ export function OsDownloadPicker({ compact = false }: { compact?: boolean }) {
           download
           rel="noopener noreferrer"
           className={cn(
-            'inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-700 px-5 font-semibold text-white shadow-sm transition hover:bg-[#081a32] sm:w-auto',
+            'inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 font-semibold text-white shadow-sm transition hover:bg-brand-700 sm:w-auto',
             compact ? 'py-2.5 text-sm' : 'py-3.5 text-sm sm:text-base',
           )}
         >

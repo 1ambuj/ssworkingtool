@@ -4,12 +4,11 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-brand-50: #fff4ec;
-  --color-brand-100: #ffe0cc;
-  --color-brand-200: #ffb07a;
-  --color-brand-500: #f37920;
-  --color-brand-600: #f37920;
-  --color-brand-700: #0b2545;
+  --color-brand-50: #e8f2ef;
+  --color-brand-100: #d1e5df;
+  --color-brand-500: #3d6b5f;
+  --color-brand-600: #2f554b;
+  --color-brand-700: #244339;
   --color-surface: var(--surface);
   --color-panel: var(--panel);
   --color-border: var(--border);
@@ -43,40 +42,40 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Syne', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Manrope', ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
   --radius: 0.85rem;
-  --background: #fff7f0;
-  --foreground: #10233d;
-  --surface: #fff8ee;
-  --panel: #fffcf8;
-  --card: #fffcf8;
-  --card-foreground: #10233d;
-  --popover: #fffcf8;
-  --popover-foreground: #10233d;
-  --primary: #f37920;
-  --primary-foreground: #ffffff;
-  --secondary: #eef3f8;
-  --secondary-foreground: #10233d;
-  --muted: #eef3f8;
-  --muted-foreground: #5c6b7d;
-  --accent: #fff4ec;
-  --accent-foreground: #0b2545;
+  --background: #f6f1e8;
+  --foreground: #1c1917;
+  --surface: #efe8dc;
+  --panel: #fffcf7;
+  --card: #fffcf7;
+  --card-foreground: #1c1917;
+  --popover: #fffcf7;
+  --popover-foreground: #1c1917;
+  --primary: #2f554b;
+  --primary-foreground: #fffcf7;
+  --secondary: #ebe4d8;
+  --secondary-foreground: #1c1917;
+  --muted: #ebe4d8;
+  --muted-foreground: #6f6860;
+  --accent: #e8f2ef;
+  --accent-foreground: #244339;
   --destructive: #b42318;
-  --border: #eadfce;
-  --input: #eadfce;
-  --ring: #f37920;
-  --sidebar: #fffcf8;
-  --sidebar-foreground: #10233d;
-  --sidebar-primary: #0b2545;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #fff4ec;
-  --sidebar-accent-foreground: #0b2545;
-  --sidebar-border: #eadfce;
-  --sidebar-ring: #f37920;
+  --border: #e2d9cc;
+  --input: #e2d9cc;
+  --ring: #3d6b5f;
+  --sidebar: #fffcf7;
+  --sidebar-foreground: #1c1917;
+  --sidebar-primary: #2f554b;
+  --sidebar-primary-foreground: #fffcf7;
+  --sidebar-accent: #e8f2ef;
+  --sidebar-accent-foreground: #244339;
+  --sidebar-border: #e2d9cc;
+  --sidebar-ring: #3d6b5f;
 }
 
 * {
@@ -93,14 +92,11 @@ body,
 body {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.7;
   color: var(--foreground);
   background-color: var(--background);
   background-image:
-    radial-gradient(ellipse 50% 40% at 0% 0%, rgb(243 121 32 / 0.28), transparent 62%),
-    radial-gradient(ellipse 42% 36% at 100% 8%, rgb(56 168 214 / 0.22), transparent 60%),
-    radial-gradient(ellipse 35% 28% at 70% 100%, rgb(92 184 122 / 0.16), transparent 62%);
+    radial-gradient(ellipse 70% 45% at 0% -5%, rgb(61 107 95 / 0.14), transparent),
+    radial-gradient(ellipse 50% 35% at 100% 0%, rgb(196 150 90 / 0.12), transparent);
   -webkit-font-smoothing: antialiased;
   cursor: default;
   user-select: none;
@@ -251,12 +247,10 @@ summary {
 
 .font-display {
   font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.1;
 }
 
 .brand-shimmer {
-  background: linear-gradient(110deg, #0b2545 0%, #163a66 40%, #f37920 55%, #163a66 70%, #0b2545 100%);
+  background: linear-gradient(110deg, #244339 0%, #3d6b5f 40%, #c4965a 55%, #3d6b5f 70%, #244339 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;

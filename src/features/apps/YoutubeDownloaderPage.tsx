@@ -26,7 +26,7 @@ export function YoutubeDownloaderPage() {
   }
 
   return (
-    <div className="relative overflow-hidden bg-[#f7f4ef] text-[#10233d]">
+    <div className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-24 top-0 h-72 w-72 rounded-full bg-brand-100/45 blur-3xl" />
         <div className="absolute right-0 top-32 h-80 w-80 rounded-full bg-amber-100/30 blur-3xl" />
@@ -158,7 +158,7 @@ export function YoutubeDownloaderPage() {
                     href={YOUTUBE_DOWNLOADER_WINDOWS_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-700 px-5 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#081a32]"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700"
                   >
                     <Download className="h-4 w-4" />
                     Download for Windows
@@ -168,7 +168,7 @@ export function YoutubeDownloaderPage() {
                     href={YOUTUBE_DOWNLOADER_MAC_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-700 px-5 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#081a32]"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700"
                   >
                     <Download className="h-4 w-4" />
                     Download for Mac
