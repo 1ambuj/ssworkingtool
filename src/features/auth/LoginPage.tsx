@@ -1,6 +1,5 @@
 import { useState, type FormEvent } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
-import { BrandLogo } from '@/components/shell/BrandLogo'
 import { useAuth } from '@/features/auth/AuthContext'
 
 export function LoginPage() {
@@ -30,32 +29,37 @@ export function LoginPage() {
   return (
     <div className="relative flex min-h-screen flex-col">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="animate-blob absolute -left-20 top-10 h-72 w-72 rounded-full bg-brand-100/80 blur-3xl" />
-        <div className="animate-blob-slow absolute -right-16 bottom-10 h-80 w-80 rounded-full bg-amber-100/60 blur-3xl" />
+        <div className="animate-blob absolute -left-20 top-10 h-72 w-72 rounded-full bg-[#f37920]/25 blur-3xl" />
+        <div className="animate-blob-slow absolute -right-16 bottom-10 h-80 w-80 rounded-full bg-sky-200/70 blur-3xl" />
       </div>
 
-      <header className="animate-fade-in relative z-10 border-b border-border/60 bg-panel/80 px-6 py-5 backdrop-blur-md md:px-8">
-        <div className="mx-auto flex max-w-6xl items-center">
-          <BrandLogo
-            size="md"
-            showWordmark
-            tagline="Firm tools in one place"
-          />
+      <header className="animate-fade-in relative z-10 border-b border-[#f37920]/20 bg-[#fffaf6]/80 px-6 py-5 backdrop-blur-md md:px-8">
+        <div className="mx-auto flex max-w-6xl items-center gap-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#f37920] text-xs font-bold text-white">
+            SS
+          </div>
+          <div>
+            <p className="font-display text-base font-semibold tracking-tight text-ink">
+              SS Workspace
+            </p>
+            <p className="text-xs text-muted">Sandeep Singla &amp; Associates</p>
+          </div>
         </div>
       </header>
 
       <div className="relative z-10 flex flex-1 items-center justify-center px-4 py-12">
         <div className="grid w-full max-w-5xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="animate-fade-up hidden lg:block">
-            <p className="text-sm font-medium tracking-[0.18em] text-brand-700 uppercase">
-              Welcome
+            <p className="text-sm font-medium tracking-[0.18em] text-[#f37920] uppercase">
+              Sandeep Singla &amp; Associates
             </p>
-            <h1 className="font-display mt-4 text-4xl leading-tight font-semibold tracking-tight text-ink">
-              Welcome to your tools. Please explore.
+            <h1 className="font-display mt-4 text-[43px] leading-[1.1] font-bold tracking-tight text-ink">
+              Welcome to SS Workspace.
             </h1>
-            <p className="mt-5 max-w-lg text-base leading-relaxed text-muted">
-              Sign in once with your SSA Intersoft account, then open Timesheet,
-              Learning, and more without signing in again.
+            <p className="mt-5 max-w-lg text-base leading-[1.7] text-muted">
+              Internal office software developed by the firm. Sign in once with
+              your SSA Intersoft account, then open Timesheet, Learning, and
+              desktop tools without signing in again.
             </p>
           </div>
 
@@ -101,7 +105,7 @@ export function LoginPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60"
+                className="w-full rounded-xl bg-[#f37920] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#e06812] disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {isLoading ? 'Signing in…' : 'Sign in & explore'}
               </button>

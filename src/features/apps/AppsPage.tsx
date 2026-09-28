@@ -9,7 +9,7 @@ import { useAuth } from '@/features/auth/AuthContext'
 
 function ToolIcon({ tool }: { tool: CatalogApp }) {
   const frameClass =
-    'flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-surface shadow-sm ring-1 ring-border/60 transition duration-200 group-hover:ring-brand-200'
+    'flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-surface shadow-sm ring-1 ring-border/60'
 
   if (tool.id === 'pdf-studio') {
     return (
@@ -57,18 +57,19 @@ export function AppsPage() {
   return (
     <div className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0">
-        <div className="animate-blob absolute left-1/2 top-0 h-72 w-[36rem] -translate-x-1/2 rounded-full bg-brand-100/40 blur-3xl" />
+        <div className="animate-blob absolute -left-16 top-0 h-72 w-72 rounded-full bg-[#f37920]/25 blur-3xl" />
+        <div className="animate-blob-slow absolute right-0 top-24 h-80 w-80 rounded-full bg-sky-300/40 blur-3xl" />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-28">
         <header className="animate-fade-up max-w-2xl">
-          <p className="text-sm font-medium tracking-[0.18em] text-brand-700 uppercase md:text-base">
+          <p className="text-sm font-medium tracking-[0.18em] text-[#f37920] uppercase md:text-base">
             Tools
           </p>
-          <h1 className="font-display mt-5 text-3xl font-semibold tracking-tight text-ink sm:text-4xl md:text-5xl">
+          <h1 className="font-display mt-5 text-[30px] leading-[1.2] font-bold tracking-tight text-ink">
             Install on your computer
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-muted md:text-lg">
+          <p className="mt-6 text-base leading-[1.7] text-muted">
             Desktop software for firm work. Download once, use offline.
           </p>
         </header>
@@ -82,7 +83,45 @@ export function AppsPage() {
           </div>
         ) : (
           <ul className="mt-10 grid gap-5 sm:mt-12 sm:grid-cols-2 lg:gap-6">
-            {tools.map((tool, index) => (
+            {tools.map((tool, index) => {
+              const purple = {
+                card: 'border-purple-200 bg-purple-50 shadow-[0_24px_50px_-28px_rgba(126,34,206,0.4)]',
+                badge: 'bg-purple-100 text-purple-800',
+                line: 'text-purple-700',
+                dot: 'bg-purple-500',
+                button: 'bg-purple-600 hover:bg-purple-700',
+              }
+              const red = {
+                card: 'border-red-200 bg-red-50 shadow-[0_24px_50px_-28px_rgba(220,38,38,0.35)]',
+                badge: 'bg-red-100 text-red-700',
+                line: 'text-red-600',
+                dot: 'bg-red-500',
+                button: 'bg-red-600 hover:bg-red-700',
+              }
+              const orange = {
+                card: 'border-[#f37920]/25 bg-white shadow-[0_24px_50px_-28px_rgba(243,121,32,0.45)]',
+                badge: 'bg-[#fff0e4] text-[#d96512]',
+                line: 'text-[#d96512]',
+                dot: 'bg-[#f37920]',
+                button: 'bg-[#f37920] hover:bg-[#e06812]',
+              }
+              const navy = {
+                card: 'border-[#0b2545]/30 bg-[#e8eef6] shadow-[0_24px_50px_-28px_rgba(11,37,69,0.45)]',
+                badge: 'bg-[#0b2545] text-white',
+                line: 'text-[#0b2545]',
+                dot: 'bg-[#0b2545]',
+                button: 'bg-[#0b2545] hover:bg-[#081a32]',
+              }
+              const tone =
+                tool.id === 'youtube-downloader'
+                  ? red
+                  : tool.id === 'pdf-studio'
+                    ? navy
+                    : tool.id === 'pdf-redaction'
+                      ? purple
+                      : orange
+
+              return (
               <li
                 key={tool.id}
                 className={
@@ -91,30 +130,26 @@ export function AppsPage() {
                     : 'animate-fade-up-delay-2 h-full'
                 }
               >
-                <Link
-                  to={tool.url}
-                  className="group hover-lift flex h-full flex-col overflow-hidden rounded-2xl border border-border/70 bg-panel p-5 shadow-sm transition duration-200 hover:border-brand-100 hover:shadow-md sm:p-6"
-                  aria-label={`Open ${tool.name}`}
-                >
+                <article className={`hover-lift flex h-full flex-col overflow-hidden rounded-2xl border p-5 sm:p-6 ${tone.card}`}>
                   <div className="flex items-start gap-4">
                     <ToolIcon tool={tool} />
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-2">
-                        <h2 className="font-display text-lg font-semibold tracking-tight text-ink sm:text-xl">
+                        <h2 className="font-display text-lg font-bold tracking-tight text-ink sm:text-xl">
                           {tool.name}
                         </h2>
-                        <span className="inline-flex items-center gap-1 rounded-md bg-brand-50 px-2 py-0.5 text-[11px] font-medium text-brand-700">
+                        <span className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-medium ${tone.badge}`}>
                           <Monitor className="h-3 w-3" />
                           Desktop
                         </span>
                       </div>
-                      <p className="mt-1 text-sm font-medium text-brand-700">
+                      <p className={`mt-1 text-sm font-medium ${tone.line}`}>
                         {tool.tagline}
                       </p>
                     </div>
                   </div>
 
-                  <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">
+                  <p className="mt-4 flex-1 text-base leading-[1.7] text-muted">
                     {tool.description}
                   </p>
 
@@ -123,22 +158,26 @@ export function AppsPage() {
                       {tool.actions.slice(0, 3).map((action) => (
                         <li
                           key={action}
-                          className="flex items-center gap-2 text-xs text-muted"
+                          className="flex items-center gap-2 text-sm text-muted"
                         >
-                          <span className="h-1 w-1 shrink-0 rounded-full bg-brand-600" />
+                          <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${tone.dot}`} />
                           {action}
                         </li>
                       ))}
                     </ul>
                   ) : null}
 
-                  <span className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition group-hover:bg-brand-700">
+                  <Link
+                    to={tool.url}
+                    className={`group mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3 text-base font-semibold text-white shadow-sm transition ${tone.button}`}
+                  >
                     Get installer
                     <ArrowUpRight className="h-4 w-4 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </span>
-                </Link>
+                  </Link>
+                </article>
               </li>
-            ))}
+              )
+            })}
           </ul>
         )}
       </div>
