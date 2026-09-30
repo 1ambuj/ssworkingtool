@@ -100,7 +100,7 @@ export function HomePage() {
                   href={timesheetUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover-lift mt-10 inline-flex items-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-base font-semibold text-white transition hover:bg-brand-700"
+                  className="hover-lift mt-10 inline-flex items-center gap-2 rounded-xl bg-[#f3206a] px-6 py-3.5 text-base font-semibold text-white transition hover:bg-[#d41458]"
                 >
                   Launch Timesheet
                   <ArrowUpRight className="h-5 w-5" />
@@ -134,24 +134,16 @@ export function HomePage() {
         <section className="px-6 py-20 md:px-8 md:py-28">
           <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_0.95fr] lg:items-center lg:gap-16">
             <div className="animate-fade-up-delay order-2 lg:order-1 lg:pr-2">
-              <a
-                href={learning.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block cursor-pointer"
-                aria-label={`Open ${learning.name}`}
-              >
-                <LearningPreview />
-              </a>
+              <LearningPreview />
             </div>
             <div className="animate-soft-rise order-1 lg:order-2 lg:pl-2">
-              <p className="text-sm font-medium tracking-[0.16em] text-brand-700 uppercase md:text-base">
+              <p className="text-sm font-medium tracking-[0.16em] text-emerald-700 uppercase md:text-base">
                 Next up
               </p>
-              <h2 className="font-display mt-4 text-4xl font-semibold tracking-tight text-ink md:text-5xl">
+              <h2 className="font-display mt-4 text-[30px] leading-[1.2] font-bold tracking-tight text-ink">
                 {learning.name}
               </h2>
-              <p className="mt-3 text-xl text-brand-700">{learning.tagline}</p>
+              <p className="mt-3 text-xl text-emerald-700">{learning.tagline}</p>
               <p className="mt-5 text-lg leading-relaxed text-muted">
                 {learning.description}
               </p>
@@ -161,7 +153,7 @@ export function HomePage() {
                   : learning.details
                 ).map((item) => (
                   <li key={item} className="flex gap-3 text-base text-ink">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-600" />
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
                     {item}
                   </li>
                 ))}
@@ -170,7 +162,7 @@ export function HomePage() {
                 href={learning.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover-lift mt-10 inline-flex items-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-base font-semibold text-white transition hover:bg-brand-700"
+                className="hover-lift mt-10 inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 text-base font-semibold text-white transition hover:bg-emerald-700"
               >
                 Open Learning (LAN)
                 <ArrowUpRight className="h-5 w-5" />
@@ -209,7 +201,7 @@ export function HomePage() {
                 href={epdfBook.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover-lift mt-10 inline-flex items-center gap-2 rounded-xl bg-brand-600 px-6 py-3.5 text-base font-semibold text-white transition hover:bg-brand-700"
+                className="hover-lift mt-10 inline-flex items-center gap-2 rounded-xl bg-[#204af3] px-6 py-3.5 text-base font-semibold text-white transition hover:bg-[#183dcc]"
               >
                 Open ePDF book
                 <ArrowUpRight className="h-5 w-5" />

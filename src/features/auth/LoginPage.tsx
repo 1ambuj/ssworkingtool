@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
+import { ArrowUpRight } from 'lucide-react'
 import { Navigate, useNavigate } from 'react-router-dom'
-import { BrandLogo } from '@/components/shell/BrandLogo'
+import firmLogo from '@/assets/img/sspartners-logo.png'
 import { useAuth } from '@/features/auth/AuthContext'
 
 export function LoginPage() {
@@ -34,13 +35,21 @@ export function LoginPage() {
         <div className="animate-blob-slow absolute -right-16 bottom-10 h-80 w-80 rounded-full bg-amber-100/60 blur-3xl" />
       </div>
 
-      <header className="animate-fade-in relative z-10 border-b border-border/60 bg-panel/80 px-6 py-5 backdrop-blur-md md:px-8">
-        <div className="mx-auto flex max-w-6xl items-center">
-          <BrandLogo
-            size="md"
-            showWordmark
-            tagline="Firm tools in one place"
-          />
+      <header className="animate-fade-in relative z-10 border-b border-[#f37920]/20 bg-[#fffaf6]/90 px-6 py-4 backdrop-blur-md md:px-8">
+        <div className="mx-auto flex max-w-7xl items-center gap-3">
+          <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-border/70">
+            <img
+              src={firmLogo}
+              alt="Sandeep Singla & Associates"
+              className="h-9 w-9 object-contain"
+            />
+          </div>
+          <div>
+            <p className="font-display text-base font-semibold tracking-tight text-ink">
+              SS Workspace
+            </p>
+            <p className="text-xs text-muted">Sandeep Singla &amp; Associates</p>
+          </div>
         </div>
       </header>
 
@@ -57,6 +66,23 @@ export function LoginPage() {
               Sign in once with your SSA Intersoft account, then open Timesheet,
               Learning, and more without signing in again.
             </p>
+            <a
+              href="https://sspartners.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 block max-w-md rounded-2xl border border-[#f37920]/30 bg-white/80 p-5 shadow-sm transition hover:border-[#f37920]"
+            >
+              <p className="text-xs font-medium tracking-[0.16em] text-[#f37920] uppercase">
+                The firm
+              </p>
+              <p className="font-display mt-2 text-xl font-bold text-ink">
+                Audit, Tax, GST &amp; Advisory
+              </p>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-sky-700">
+                sspartners.in
+                <ArrowUpRight className="h-4 w-4" />
+              </span>
+            </a>
           </div>
 
           <div className="animate-soft-rise w-full rounded-3xl border border-border/80 bg-panel/95 p-8 shadow-lg backdrop-blur-sm md:p-9">

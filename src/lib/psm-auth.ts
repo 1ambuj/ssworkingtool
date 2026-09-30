@@ -20,8 +20,8 @@ interface PsmLoginResponse {
   user?: PsmLoginUser
 }
 
-const LOGIN_TIMEOUT_MS = 45000
-const MAX_ATTEMPTS = 3
+const LOGIN_TIMEOUT_MS = 25000
+const MAX_ATTEMPTS = 1
 
 /**
  * Login against the Timesheet / PSM auth API.
