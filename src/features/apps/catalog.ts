@@ -113,7 +113,7 @@ export const catalog: CatalogApp[] = [
       'Works on the office / LAN network',
       'SSO from CoreWorkspace coming next',
     ],
-    url: 'http://192.168.1.198:8000/',
+    url: 'http://192.168.1.94:8000/',
     status: 'live',
     kind: 'web',
     accessNote: 'LAN access',
